@@ -28,6 +28,7 @@ public class Board extends JPanel implements ActionListener {
     private boolean inGame = true;
     
     private int dots;
+    private int count;
     private Timer timer;
     
     Board() {
@@ -54,6 +55,7 @@ public class Board extends JPanel implements ActionListener {
     
     public void initGame() {
         dots = 3;
+        count = 0;
         
         for (int i = 0; i < dots; i++) {
             y[i] = 50;
@@ -100,13 +102,13 @@ public class Board extends JPanel implements ActionListener {
     }
     
     public void gameOver(Graphics g) {
-        String msg = "Game Over!";
+        String msg = "Game Over !! Total Points : ";
         Font font = new Font("SAN_SERIF", Font.BOLD, 14);
         FontMetrics metrices = getFontMetrics(font);
         
         g.setColor(Color.WHITE);
         g.setFont(font);
-        g.drawString(msg, (300 - metrices.stringWidth(msg)) / 2, 300/2);
+        g.drawString(msg + count, (300 - metrices.stringWidth(msg)) / 2, 300/2);
     }
     
     public void move() {
@@ -133,6 +135,7 @@ public class Board extends JPanel implements ActionListener {
         if ((x[0] == xaxis) && (y[0] == yaxis)) {
             dots++;
             locateDots();
+            count++;
         }
     }
     
